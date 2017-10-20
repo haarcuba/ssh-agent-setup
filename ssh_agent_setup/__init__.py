@@ -11,7 +11,7 @@ def _killAgent():
     del os.environ[ 'SSH_AGENT_PID' ]
 
 def _setupAgent():
-    process = subprocess.run( 'ssh-agent', stdout = subprocess.PIPE, universal_newlines = True )
+    process = subprocess.run( ['ssh-agent','-s'], stdout = subprocess.PIPE, universal_newlines = True )
     OUTPUT_PATTERN = re.compile(  'SSH_AUTH_SOCK=(?P<socket>[^;]+).*SSH_AGENT_PID=(?P<pid>\d+)', re.MULTILINE | re.DOTALL )
     match = OUTPUT_PATTERN.search( process.stdout )
     if match is None:
