@@ -5,7 +5,7 @@ README = 'set up a working ssh-agent and add keys for any subprocesses you want 
 requires = []
 
 setup(name='ssh-agent-setup',
-      version='0.2.0',
+      version='1.0.0',
       description=README,
       long_description=README,
       url='https://github.com/haarcuba/ssh-agent-setup',
