@@ -1,0 +1,27 @@
+name: Tests
+on:
+    push:
+        branches:
+            - issue_**
+jobs:
+  Unit-Tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: check out our code
+        uses: actions/checkout@v2
+      - name: install 
+        run:  poetry install
+      - name: install 
+        run:  pip install pytest
+      - name: unit tests
+        run:  python -m pytest -sv
+  All-OK:
+    runs-on: ubuntu-20.04
+    needs:
+        - Unit-Tests
+    if: always()
+    steps:
+      - name: check out our code
+        uses: actions/checkout@v2
+      - name: Unit-Tests
+        run:  rake 'enforce_success[${{needs.Unit-Tests.result}}]'
