@@ -16,7 +16,7 @@ jobs:
       - name: install 
         run:  pip install pytest
       - name: unit tests
-        run:  python -m pytest -sv
+        run:  rake units
   All-OK:
     runs-on: ubuntu-20.04
     needs:
@@ -25,5 +25,7 @@ jobs:
     steps:
       - name: check out our code
         uses: actions/checkout@v2
+      - name: verify we did not forget any tests
+        run:  rake all_tests_included
       - name: Unit-Tests
         run:  rake 'enforce_success[${{needs.Unit-Tests.result}}]'
