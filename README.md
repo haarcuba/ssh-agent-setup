@@ -18,7 +18,7 @@ ssh_agent_setup.setup()
 Add a private key (and identity) to the `ssh-agent`:
 
 ```python
-ssh_agent_setup.addKey( '/path/to/my_key_rsa' )
+ssh_agent_setup.add_key( '/path/to/my_key_rsa' )
 ```
 
 If an `ssh-agent` was started by `ssh_agent_setup`, it will be killed when the process exists via `atexit`.

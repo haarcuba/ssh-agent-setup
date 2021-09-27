@@ -1,0 +1,29 @@
+name: Tests
+on:
+    push:
+        branches:
+            - issue_**
+jobs:
+  Unit-Tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: check out our code
+        uses: actions/checkout@v2
+      - name: install poetry
+        run:  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+      - name: install our code
+        run:  poetry install
+      - name: unit tests
+        run:  rake units
+  All-OK:
+    runs-on: ubuntu-20.04
+    needs:
+        - Unit-Tests
+    if: always()
+    steps:
+      - name: check out our code
+        uses: actions/checkout@v2
+      - name: verify we did not forget any tests
+        run:  rake all_tests_included
+      - name: Unit-Tests
+        run:  rake 'enforce_success[${{needs.Unit-Tests.result}}]'
