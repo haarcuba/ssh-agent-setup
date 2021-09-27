@@ -6,7 +6,7 @@ $log = Logger.new STDERR
 
 
 task :units do
-    sh "python -m pytest -sv tests/"
+    sh "poetry run python -m pytest -sv tests/"
 end
 
 desc "make sure we did not forget to include any tests"
