@@ -1,8 +1,6 @@
 name: Tests
 on:
-    push:
-        branches:
-            - issue_**
+  pull_request:
 jobs:
   Unit-Tests:
     runs-on: ubuntu-20.04
