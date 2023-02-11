@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
-ipython = "^7.31.1"
+ipython = "^8.10.0"
 pytest = "^6.2.5"
 
 [build-system]
